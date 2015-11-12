@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <!--        <h:outputStylesheet name="./css/default.css"/>
+                <h:outputStylesheet name="./css/cssLayout.css"/>-->
+        <style type="text/css">
+            body {background-color: #eeeeee; font-size: 12px}
+        </style> 
+        <title>iCine</title>
+    </h:head>
+
+    <h:body>
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="south" size="40" closable="true" collapsible="true">
+                <h:panelGrid id="bottom">
+                    <h:outputText value="Copyright © 2015 Laerts System Technologies Limited. All rights reserved. Version 1.0.1"/>
+                </h:panelGrid>
+            </p:layoutUnit>
+
+            <!--Cima-->
+            <p:layoutUnit position="north" size="100" >
+                <!--<h:graphicImage url="/tema/imagens/topo.jpg" />-->
+                <center><h3>Logo iCine</h3></center>
+
+                <p:menubar>
+                    <f:facet name="options">
+                        <!--<p:inputText style="margin-right:10px" placeholder="Search"/>-->
+                        <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" action="#{loginBean.realizaLogout()}" />
+                        <!--<p:commandButton value="Logout" icon="ui-icon-extlink" action="#{loginBean.realizaLogout()}" ajax="false"> </p:commandButton>-->
+
+                    </f:facet>
+                </p:menubar>
+
+            </p:layoutUnit>
+
+            <p:layoutUnit position="east" size="200" header="Acesso Rápido" resizable="true" closable="true" collapsible="true" effect="drop">
+                <!--                <h:outputText value="Perfil de Usu" />-->
+                <h:form>
+                    <p:menu>
+                        <p:submenu label="Perfil">
+                            <p:menuitem value="Thema" outcome="thema.jsf" icon="ui-icon-home"/>                            
+                        </p:submenu>
+                    </p:menu>
+                </h:form>
+            </p:layoutUnit>
+
+            <!--Esquerda-->
+            <p:layoutUnit position="west" size="200" rendered="true" collapsible="true" resizable="true" closable="true" header="Menu" effect="drop">
+                <h:form>                     
+                    <p:menu>
+                        <p:submenu label="Principal">
+                            <p:menuitem value="Home" outcome="home.jsf" icon="ui-icon-home"/>
+                        </p:submenu>
+                        <p:submenu label="Cinema">
+                            <p:menuitem value="Filmes" icon="ui-icon-arrowrefresh-1-w" outcome="filme.jsf"/>
+                            <p:menuitem value="Salas" icon="ui-icon-arrowrefresh-1-w" outcome="sala.jsf"/>
+                            <p:menuitem value="Seções" icon="ui-icon-arrowrefresh-1-w"/>
+                            <p:menuitem value="Venda" icon="ui-icon-arrowrefresh-1-w"/>
+                            <p:menuitem value="Relatórios" icon="ui-icon-arrowrefresh-1-w"/>
+                        </p:submenu>
+                        <p:submenu label="Configurações">
+                            <p:menuitem value="Usuario" icon="ui-icon-arrowrefresh-1-w" outcome="usuario.jsf"/>
+                        </p:submenu>
+                        
+                        <p:submenu label="Utilitário">
+                            <p:menuitem value="Facebook" url="http://www.facebook.com" icon="ui-icon-home"/>
+                            <p:menuitem value="Twitter" url="http://www.twitter.com" icon="ui-icon-home"/>
+                            <p:menuitem value="Facebook" url="http://www.gmail.com" icon="ui-icon-home"/>                            
+                        </p:submenu>
+                    </p:menu>
+                </h:form>
+            </p:layoutUnit> 
+            <!--Centro-->
+            <p:layoutUnit position="center">  
+                <ui:insert name="centro">
+
+                    Bem vindo usuario xxxx.
+                    <br />
+                    Data dd/mm/aaaa
+                    <br />
+                    Hoje  o dia esta p/ sol......
+
+                </ui:insert>
+            </p:layoutUnit>  
+
+        </p:layout>  
+    </h:body>
+
+    <!--    <h:body>
+            
+            <div id="top" class="top">
+                <ui:insert name="top">Top master</ui:insert>
+            </div>
+            <div>
+                <div id="left">
+                    <ui:insert name="left">Left master</ui:insert>
+                </div>
+                <div id="content" class="left_content">
+                    <ui:insert name="content">Content master</ui:insert>
+                </div>
+            </div>
+        </h:body>-->
+
+</html>

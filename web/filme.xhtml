@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+    <ui:decorate template="./templateMaster.xhtml">
+
+        <ui:define name="centro">
+
+            <h:form prependId="false" id="frmFilme">
+                <p:menubar>
+                    <p:menuitem value="Incluir" icon="ui-icon-home" onclick="PF('dlgFilme').show();"></p:menuitem>
+                    <p:menuitem value="Print" icon="ui-icon-person"></p:menuitem>                
+                </p:menubar>
+
+                <p:dialog id="dlgFilme" widgetVar="dlgFilme" resizable="false" height="250" width="400" header="Filme">
+
+                    <p:panelGrid columns="2">
+
+                        <h:outputText value="Nome" />
+                        <p:inputText id="nome" value="#{filmeBean.filme.nome}"/>
+
+                        <h:outputText value="Genero"/>
+                        <p:inputText id="sobrenome" value="#{filmeBean.filme.genero}" /> 
+
+                        <h:outputText value="CNPJ/CPF"/>
+                        <p:inputText id="email" value="#{filmeBean.filme.sinopse}" />
+
+                        <p:commandButton value="Salvar" id="salva" actionListener="#{filmeBean.adicionar(actionEvent)}"
+                                         update="dtFilme frmFilme" oncomplete="PF('dlgFilme').hide();">
+
+
+                        </p:commandButton>
+                    </p:panelGrid>
+
+
+                </p:dialog>
+
+                <p:dataTable value="#{filmeBean.listaFilmes}" var="varFilmes" id="dtFilme" paginator="true" rows="18" lazy="true" >
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Código" />
+                        </f:facet>
+                        <h:outputText value="#{varFilmes.id}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nome" />
+                        </f:facet>
+                        <h:outputText value="#{varFilmes.nome}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Genero" />
+                        </f:facet>
+                        <h:outputText value="#{varFilmes.genero}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Sinopse" />
+                        </f:facet>
+                        <h:outputText value="#{varFilmes.sinopse}" />
+                    </p:column>
+
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="" />
+                        </f:facet>
+
+                        <p:commandLink value="Excluir" action="#{filmeBean.excluir()}" 
+                                       onclick="if (!confirm('Deseja exluir o filme #{varFilmes.nome} ?'))
+                                                   return false;"
+                                       update="dtFilme"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+
+    </ui:decorate>
+</html>
+

@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:decorate template="./templateMaster.xhtml">
+
+        <ui:define name="centro">
+
+            <h:form prependId="false" id="frmSala">
+                <p:menubar>
+                    <p:menuitem value="Incluir"  icon="ui-icon-home" onclick="PF('dlgSala').show();"></p:menuitem>
+                    <p:menuitem value="Print" icon="ui-icon-person"></p:menuitem>                
+                </p:menubar>
+
+
+                <p:dialog id="dlgSala" widgetVar="dlgSala" resizable="false" height="250" width="400" header="Sala">
+
+                    <p:panelGrid columns="2">
+                        <h:outputText value="Quantidade Assentos" />
+                        <p:inputText id="nome" value="#{salaBean.sala.quantidadeAssentos}" required="true" requiredMessage="Insira a Quantidade!" />
+
+                        <p:commandButton value="Salvar" id="salva" actionListener="#{salaBean.adicionar(actionEvent)}"
+                                         update="dtSala frmSala" oncomplete="PF('dlgSala').hide();">
+                        </p:commandButton>
+                    </p:panelGrid>
+
+
+                </p:dialog>
+
+                <p:dataTable value="#{salaBean.listaSalas}" var="varSalas" id="dtSala" paginator="true" rows="18" lazy="true" >
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Numero" />
+                        </f:facet>
+                        <h:outputText value="#{varSalas.id}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Quantidade" />
+                        </f:facet>
+                        <h:outputText value="#{varSalas.quantidadeAssentos}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="" />
+                        </f:facet>
+
+                        <p:commandLink value="Excluir" action="#{salaBean.excluir()}" 
+                                       onclick="if (!confirm('Deseja exluir a sala? #{varSalas.id} ?'))
+                                                   return false;"
+                                       update="dtSala"/>
+                    </p:column>
+
+
+
+                </p:dataTable>
+            </h:form>
+
+        </ui:define>
+
+    </ui:decorate>
+
+</html>
+
