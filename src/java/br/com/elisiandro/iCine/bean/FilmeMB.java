@@ -2,6 +2,7 @@ package br.com.elisiandro.iCine.bean;
 
 import br.com.elisiandro.iCine.dao.InterfaceCrud;
 import br.com.elisiandro.iCine.dao.FilmeDao;
+import br.com.elisiandro.iCine.entidade.Enum.GENERO;
 import br.com.elisiandro.iCine.entidade.Filme;
 import java.awt.event.ActionEvent;
 import java.io.Serializable;
@@ -22,6 +23,12 @@ import javax.faces.model.ListDataModel;
 public class FilmeMB implements Serializable{
     private Filme filme;
     private DataModel listaFilmes;
+    
+    
+    
+    public GENERO[] getGeneros() {
+        return GENERO.values();
+    }
 
     public FilmeMB()
     {

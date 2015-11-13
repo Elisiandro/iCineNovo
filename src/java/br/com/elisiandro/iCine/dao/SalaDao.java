@@ -22,7 +22,9 @@ public class SalaDao implements InterfaceCrud<Sala>{
     public Sala getItem(Long id) {
         
         Session ss = HibernateUtil.getSessionFactory().openSession();
-        return (Sala) ss.load(Sala.class, id);        
+        Sala sala = (Sala) ss.load(Sala.class, id);
+        ss.close();
+        return sala;
     }
 
     @Override
@@ -61,6 +63,7 @@ public class SalaDao implements InterfaceCrud<Sala>{
         List lista;
         lista = ss.createQuery("from Sala").list();
         t.commit();
+        ss.close();
         
         return lista;
     }

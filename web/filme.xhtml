@@ -21,47 +21,47 @@
 
                     <p:panelGrid columns="2">
 
-                        <h:outputText value="Nome" />
-                        <p:inputText id="nome" value="#{filmeBean.filme.nome}"/>
+                        <h:outputText value="Nome"  />
+                        <p:inputText id="nome" value="#{filmeBean.filme.nome}" />
 
                         <h:outputText value="Genero"/>
-                        <p:inputText id="sobrenome" value="#{filmeBean.filme.genero}" /> 
+                        <h:selectOneMenu value="#{filmeBean.filme.genero}" >
+                            <f:selectItems value="#{filmeBean.generos}" />
+                        </h:selectOneMenu>
 
-                        <h:outputText value="CNPJ/CPF"/>
-                        <p:inputText id="email" value="#{filmeBean.filme.sinopse}" />
+                        <h:outputText value="Sinopse"/>
+                        <p:inputText id="sinopse" value="#{filmeBean.filme.sinopse}" />
 
                         <p:commandButton value="Salvar" id="salva" actionListener="#{filmeBean.adicionar(actionEvent)}"
                                          update="dtFilme frmFilme" oncomplete="PF('dlgFilme').hide();">
-
-
                         </p:commandButton>
+                        
                     </p:panelGrid>
-
-
+                    
                 </p:dialog>
 
                 <p:dataTable value="#{filmeBean.listaFilmes}" var="varFilmes" id="dtFilme" paginator="true" rows="18" lazy="true" >
-                    <p:column>
+                    <p:column width="50">
                         <f:facet name="header">
                             <h:outputText value="Código" />
                         </f:facet>
                         <h:outputText value="#{varFilmes.id}" />
                     </p:column>
-                    <p:column>
+                    <p:column width="150">
                         <f:facet name="header">
                             <h:outputText value="Nome" />
                         </f:facet>
                         <h:outputText value="#{varFilmes.nome}" />
                     </p:column>
 
-                    <p:column>
+                    <p:column width="80" >
                         <f:facet name="header">
                             <h:outputText value="Genero" />
                         </f:facet>
                         <h:outputText value="#{varFilmes.genero}" />
                     </p:column>
 
-                    <p:column>
+                    <p:column width="400">
                         <f:facet name="header">
                             <h:outputText value="Sinopse" />
                         </f:facet>

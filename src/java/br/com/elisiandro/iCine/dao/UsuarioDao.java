@@ -16,7 +16,9 @@ public class UsuarioDao implements InterfaceCrud<Usuario>{
     public Usuario getItem(Long id) {
         
         Session ss = HibernateUtil.getSessionFactory().openSession();
-        return (Usuario) ss.load(Usuario.class, id);        
+        Usuario usuario = (Usuario) ss.load(Usuario.class, id);
+        return usuario;
+        
     }
     
     public Usuario getUsuario(String pUsuario, String pSenha) {
@@ -97,6 +99,7 @@ public class UsuarioDao implements InterfaceCrud<Usuario>{
         List lista;
         lista = ss.createQuery("from Usuario").list();
         t.commit();
+        ss.close();
         
         return lista;
     }

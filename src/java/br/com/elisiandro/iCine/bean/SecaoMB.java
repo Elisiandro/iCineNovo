@@ -2,6 +2,7 @@ package br.com.elisiandro.iCine.bean;
 
 import br.com.elisiandro.iCine.dao.InterfaceCrud;
 import br.com.elisiandro.iCine.dao.SecaoDao;
+import br.com.elisiandro.iCine.entidade.Filme;
 import br.com.elisiandro.iCine.entidade.Secao;
 import java.awt.event.ActionEvent;
 import java.io.Serializable;

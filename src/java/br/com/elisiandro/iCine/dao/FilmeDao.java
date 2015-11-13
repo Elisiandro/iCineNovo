@@ -22,7 +22,9 @@ public class FilmeDao implements InterfaceCrud<Filme>{
     public Filme getItem(Long id) {
         
         Session ss = HibernateUtil.getSessionFactory().openSession();
-        return (Filme) ss.load(Filme.class, id);        
+        Filme filme = (Filme) ss.load(Filme.class, id);         
+        ss.close();
+        return filme;
     }
 
     @Override
@@ -61,6 +63,7 @@ public class FilmeDao implements InterfaceCrud<Filme>{
         List lista;
         lista = ss.createQuery("from Filme").list();
         t.commit();
+        ss.close();
         
         return lista;
     }

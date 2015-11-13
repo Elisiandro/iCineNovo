@@ -17,7 +17,10 @@ public class SecaoDao implements InterfaceCrud<Secao>{
     public Secao getItem(Long id) {
         
         Session ss = HibernateUtil.getSessionFactory().openSession();
-        return (Secao) ss.load(Secao.class, id);        
+        Secao secao =(Secao) ss.load(Secao.class, id);        
+        ss.close();
+                
+        return secao;
     }
 
     public Secao getItem(String usu)

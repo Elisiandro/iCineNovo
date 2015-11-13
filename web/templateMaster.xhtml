@@ -27,17 +27,18 @@
 
             <!--Cima-->
             <p:layoutUnit position="north" size="100" >
-                <!--<h:graphicImage url="/tema/imagens/topo.jpg" />-->
-                <center><h3>Logo iCine</h3></center>
+                
+                <h:graphicImage url="images/logo2.png" width="30%" height="98%" />
+                <!--<center><h3>Logo iCine</h3></center>-->
 
-                <p:menubar>
+<!--                <p:menubar>
                     <f:facet name="options">
-                        <!--<p:inputText style="margin-right:10px" placeholder="Search"/>-->
+                        <p:inputText style="margin-right:10px" placeholder="Search"/>
                         <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" action="#{loginBean.realizaLogout()}" />
-                        <!--<p:commandButton value="Logout" icon="ui-icon-extlink" action="#{loginBean.realizaLogout()}" ajax="false"> </p:commandButton>-->
+                        <p:commandButton value="Logout" icon="ui-icon-extlink" action="#{loginBean.realizaLogout()}" ajax="false"> </p:commandButton>
 
                     </f:facet>
-                </p:menubar>
+                </p:menubar>-->
 
             </p:layoutUnit>
 
@@ -62,7 +63,7 @@
                         <p:submenu label="Cinema">
                             <p:menuitem value="Filmes" icon="ui-icon-arrowrefresh-1-w" outcome="filme.jsf"/>
                             <p:menuitem value="Salas" icon="ui-icon-arrowrefresh-1-w" outcome="sala.jsf"/>
-                            <p:menuitem value="Seções" icon="ui-icon-arrowrefresh-1-w"/>
+                            <p:menuitem value="Seções" icon="ui-icon-arrowrefresh-1-w" outcome="secao.jsf"/>
                             <p:menuitem value="Venda" icon="ui-icon-arrowrefresh-1-w"/>
                             <p:menuitem value="Relatórios" icon="ui-icon-arrowrefresh-1-w"/>
                         </p:submenu>
