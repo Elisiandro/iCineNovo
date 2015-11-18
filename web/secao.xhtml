@@ -17,22 +17,26 @@
                 </p:menubar>
 
 
-                <p:dialog id="dlgSecao" widgetVar="dlgSecao" resizable="false" height="250" width="400" header="Secao">
+                <p:dialog id="dlgSecao" widgetVar="dlgSecao" resizable="false" height="200" width="450" header="Secao">
 
                     <p:panelGrid columns="2">
-                        <h:outputText value="Filme" />
-                        <p:inputText id="nomeFilme" value="#{secaoBean.secao.filme.nome}" required="true" requiredMessage="Insira o Nome do Filme!" />
                         
-                        <h:outputText value="Hora" />
-                        <p:inputText id="horaSecao" value="#{secaoBean.secao.hora}" required="true" requiredMessage="Insira a Hora da Secao!" />
+                        <p:outputLabel value="Filme" />                        
+                        <h:selectOneMenu value="#{secaoBean.secao.filme.id}" >
+                            <f:selectItem itemLabel="Selecione" itemValue=""/>
+                            <f:selectItems value="#{filmeBean.listaFilmes}" var="fi" itemValue="#{fi}" itemLabel="#{fi.nome}"/>                            
+                        </h:selectOneMenu>                        
+                        
+                        <p:outputLabel value="Hora" />                        
+                        <p:calendar id="time" value="#{secaoBean.secao.hora}" pattern="HH:mm" timeOnly="true"  />
 
-                        <h:outputText value="Sala"/>
-                        <h:selectOneMenu value="#{secaoBean.secao.sala}" >
-                            <f:selectItems value="#{salaBean.listaSalas}"  />
+                        
+                        <p:outputLabel value="Sala"/>
+                        <h:selectOneMenu value="#{secaoBean.secao.sala.id}" >
+                            <f:selectItem itemLabel="Selecione" itemValue=""/>
+                            <f:selectItems value="#{salaBean.listaSalas}" var="sa" itemValue="#{sa}" itemLabel="#{sa.id}"/>
                         </h:selectOneMenu>
 
-                        
-                        
                         <p:commandButton value="Salvar" id="salva" actionListener="#{secaoBean.adicionar(actionEvent)}"
                                          update="dtSecao frmSecao" oncomplete="PF('dlgSecao').hide();">
                         </p:commandButton>
@@ -41,26 +45,26 @@
 
                 </p:dialog>
 
-                <p:dataTable value="#{secaoBean.listaSecaos}" var="varSecaos" id="dtSecao" paginator="true" rows="18" lazy="true" >
+                <p:dataTable value="#{secaoBean.listaSecaos}" var="varSecao" id="dtSecao" paginator="true" rows="18" lazy="true" >
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Sala" />
                         </f:facet>
-                        <h:outputText value="#{varSecaos.secao.sala.id}" />
+                        <h:outputText value="#{varSecaos.id}" />
                     </p:column>
 
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Hora" />
                         </f:facet>
-                        <h:outputText value="#{varSecaos.secao.hora}" />
+                        <h:outputText value="#{varSecao.secao.hora}" />
                     </p:column>
 
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Filme" />
                         </f:facet>
-                        <h:outputText value="#{varSecaos.secao.filme.nome}" />
+                        <h:outputText value="#{varSecao.secao.filme.nome}" />
                     </p:column>
                     
                     
@@ -70,7 +74,7 @@
                         </f:facet>
 
                         <p:commandLink value="Excluir" action="#{secaoBean.excluir()}" 
-                                       onclick="if (!confirm('Deseja exluir a secao? #{varSecaos.id} ?'))
+                                       onclick="if (!confirm('Deseja exluir a secao? #{varSecao.id} ?'))
                                                    return false;"
                                        update="dtSecao"/>
                     </p:column>

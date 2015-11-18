@@ -5,6 +5,8 @@ import br.com.elisiandro.iCine.dao.SalaDao;
 import br.com.elisiandro.iCine.entidade.Sala;
 import java.awt.event.ActionEvent;
 import java.io.Serializable;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -12,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -22,7 +25,8 @@ import javax.faces.model.ListDataModel;
 public class SalaMB implements Serializable{
     private Sala sala;
     private DataModel listaSalas;
-
+    private List<Sala> listaSalas2;
+    
     public SalaMB()
     {
         
@@ -48,6 +52,14 @@ public class SalaMB implements Serializable{
         return listaSalas;
     }
 
+    public List<Sala> getListaSalas2() {
+        return  new SalaDao().list();//listaSalas2;
+    }
+
+    public void setListaSalas2(List<Sala> listaSalas2) {
+        this.listaSalas2 = listaSalas2;
+    }
+    
     public void prepararAdicionarSala(ActionEvent actionEvent) {
         sala = new Sala();
     }

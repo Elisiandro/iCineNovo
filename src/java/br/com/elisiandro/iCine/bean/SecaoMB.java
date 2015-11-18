@@ -3,6 +3,7 @@ package br.com.elisiandro.iCine.bean;
 import br.com.elisiandro.iCine.dao.InterfaceCrud;
 import br.com.elisiandro.iCine.dao.SecaoDao;
 import br.com.elisiandro.iCine.entidade.Filme;
+import br.com.elisiandro.iCine.entidade.Sala;
 import br.com.elisiandro.iCine.entidade.Secao;
 import java.awt.event.ActionEvent;
 import java.io.Serializable;
@@ -23,7 +24,7 @@ import javax.faces.model.ListDataModel;
 public class SecaoMB implements Serializable{
     private Secao secao;
     private DataModel listaSecaos;
-
+    
     public SecaoMB()
     {
         
@@ -42,7 +43,7 @@ public class SecaoMB implements Serializable{
     public void setSecao(Secao secao) {
         this.secao = secao;
     }
-    
+   
     public DataModel getListaSecaos() {
         List<Secao> lista = new SecaoDao().list();
         listaSecaos = new ListDataModel(lista);

@@ -51,6 +51,10 @@ public class UsuarioMB implements Serializable{
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public void setListaUsuarios(DataModel listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
     
     public DataModel getListaUsuarios() {
         List<Usuario> lista = new UsuarioDao().list();
