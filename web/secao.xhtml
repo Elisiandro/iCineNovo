@@ -24,12 +24,11 @@
                         <p:outputLabel value="Filme" />                        
                         <h:selectOneMenu value="#{secaoBean.secao.filme.id}" >
                             <f:selectItem itemLabel="Selecione" itemValue=""/>
-                            <f:selectItems value="#{filmeBean.listaFilmes}" var="fi" itemValue="#{fi}" itemLabel="#{fi.nome}"/>                            
+                            <f:selectItems value="#{filmeBean.listaFilmes}" var="fi" itemValue="#{fi}" itemLabel="#{fi.nome}" />
                         </h:selectOneMenu>                        
                         
                         <p:outputLabel value="Hora" />                        
                         <p:calendar id="time" value="#{secaoBean.secao.hora}" pattern="HH:mm" timeOnly="true"  />
-
                         
                         <p:outputLabel value="Sala"/>
                         <h:selectOneMenu value="#{secaoBean.secao.sala.id}" >
@@ -45,43 +44,47 @@
 
                 </p:dialog>
 
-                <p:dataTable value="#{secaoBean.listaSecaos}" var="varSecao" id="dtSecao" paginator="true" rows="18" lazy="true" >
-                    <p:column>
+                <p:dataTable value="#{secaoBean.listaSecaos}" var="varS" id="dtSecao" paginator="true" rows="18" lazy="true" >
+                    <p:column width="50">
                         <f:facet name="header">
-                            <h:outputText value="Sala" />
+                            <h:outputText value="Código" />
                         </f:facet>
-                        <h:outputText value="#{varSecaos.id}" />
+                        <h:outputText value="#{vS.id}" />
+                    </p:column>
+                    <p:column width="150">
+                        <f:facet name="header">
+                            <h:outputText value="Nome" />
+                        </f:facet>
+                        <h:outputText value="#{vS.nome}" />
                     </p:column>
 
-                    <p:column>
+                    <p:column width="80" >
                         <f:facet name="header">
-                            <h:outputText value="Hora" />
+                            <h:outputText value="Genero" />
                         </f:facet>
-                        <h:outputText value="#{varSecao.secao.hora}" />
+                        
                     </p:column>
 
-                    <p:column>
+                    <p:column width="400">
                         <f:facet name="header">
-                            <h:outputText value="Filme" />
+                            <h:outputText value="Sinopse" />
                         </f:facet>
-                        <h:outputText value="#{varSecao.secao.filme.nome}" />
+                        
                     </p:column>
-                    
-                    
+
+
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="" />
                         </f:facet>
 
                         <p:commandLink value="Excluir" action="#{secaoBean.excluir()}" 
-                                       onclick="if (!confirm('Deseja exluir a secao? #{varSecao.id} ?'))
+                                       onclick="if (!confirm('Deseja exluir o filme #{secaoBean.secao.id} ?'))
                                                    return false;"
                                        update="dtSecao"/>
                     </p:column>
-
-
-
                 </p:dataTable>
+            
             </h:form>
 
         </ui:define>
